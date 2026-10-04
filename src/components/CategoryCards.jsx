@@ -117,8 +117,10 @@ export const CategoryCards = ({ onSelectCategory }) => {
                 }}
               >
                 <img
-                  src="/images/sticker_pack.jpg"
+                  src="/images/sticker_pack.webp"
                   alt="Chompi Stickers"
+                  loading="lazy"
+                  decoding="async"
                   style={{ width: '100%', height: 'auto', display: 'block' }}
                 />
               </div>
@@ -248,8 +250,10 @@ export const CategoryCards = ({ onSelectCategory }) => {
                 }}
               >
                 <img
-                  src="/images/hero_laptop.jpg"
+                  src="/images/hero_laptop.webp"
                   alt="Chompi Precision Skins"
+                  loading="lazy"
+                  decoding="async"
                   style={{ width: '100%', height: 'auto', display: 'block' }}
                 />
               </div>

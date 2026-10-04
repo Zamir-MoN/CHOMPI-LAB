@@ -228,8 +228,10 @@ export const Hero = ({ onExploreStickers, onExploreSkins }) => {
 
           {/* Main Sticker Sheet Graphic (STILL) */}
           <img
-            src="/images/chompi_sticker_sheet.png"
+            src="/images/chompi_sticker_sheet.webp"
             alt="CHOMPI LAB Die-Cut Sticker Sheet"
+            loading="eager"
+            decoding="async"
             style={{
               width: '100%',
               height: 'auto',
@@ -293,8 +295,10 @@ export const Hero = ({ onExploreStickers, onExploreSkins }) => {
           }}
         >
           <img
-            src="/images/chompi_camo_tech.png"
+            src="/images/chompi_camo_tech.webp"
             alt="CHOMPI LAB Designer Precision Skins - MacBook & iPhone"
+            loading="eager"
+            decoding="async"
             style={{
               width: '100%',
               height: 'auto',
@@ -402,9 +406,11 @@ export const Hero = ({ onExploreStickers, onExploreSkins }) => {
         {/* Hero Black Logo Display */}
         <div ref={titleRef} style={{ marginBottom: '36px', display: 'flex', justifyContent: 'center' }}>
           <img
-            src="/images/chompi_logo.png"
+            src="/images/chompi_logo.webp"
             alt="CHOMPI LAB"
             className="hero-line"
+            loading="eager"
+            decoding="async"
             style={{
               width: 'clamp(280px, 44vw, 560px)',
               height: 'auto',
@@ -519,18 +525,89 @@ export const Hero = ({ onExploreStickers, onExploreSkins }) => {
         <div className="hero-mobile-header">
           <div className="hero-mobile-headline-row">
             <div className="hero-mobile-title-wrap">
-              {/* Top doodle rays */}
-              <div className="hero-mobile-rays">
-                <svg width="42" height="20" viewBox="0 0 42 20" fill="none">
-                  <path d="M4 17L8 5" stroke="#111111" strokeWidth="2.8" strokeLinecap="round" />
-                  <path d="M18 15L20 4" stroke="#111111" strokeWidth="2.8" strokeLinecap="round" />
-                  <path d="M32 17L30 5" stroke="#111111" strokeWidth="2.8" strokeLinecap="round" />
-                </svg>
+              <div className="title-doodle-container">
+                {/* Row 1: STICK IT with action marks & glossy bubble specular shine */}
+                <div className="title-row-stick-it">
+                  {/* Top-left radiating rays */}
+                  <svg className="rays-top-left" width="34" height="26" viewBox="0 0 34 26" fill="none">
+                    <path d="M 6 22 L 2 10" stroke="#111111" strokeWidth="2.8" strokeLinecap="round" />
+                    <path d="M 16 18 L 15 5" stroke="#111111" strokeWidth="2.8" strokeLinecap="round" />
+                    <path d="M 27 20 L 31 8" stroke="#111111" strokeWidth="2.8" strokeLinecap="round" />
+                  </svg>
+                  {/* Left 2 action dashes */}
+                  <svg className="dashes-left" width="18" height="24" viewBox="0 0 18 24" fill="none">
+                    <path d="M 14 6 L 4 10" stroke="#111111" strokeWidth="2.8" strokeLinecap="round" />
+                    <path d="M 14 18 L 2 17" stroke="#111111" strokeWidth="2.8" strokeLinecap="round" />
+                  </svg>
+
+                  {/* STICK IT bubble word */}
+                  <div className="bubble-text-wrapper stick-it-wrap">
+                    <span className="title-stick-it">STICK IT</span>
+                    {/* SVG Glossy Specular Shine Overlay */}
+                    <svg className="bubble-shine-overlay" viewBox="0 0 185 48" fill="none">
+                      {/* S shine */}
+                      <path d="M 8 16 C 8 11, 14 9, 18 10 C 15 11, 11 13, 11 17 Z" fill="#FFFFFF" opacity="0.95" />
+                      {/* T shine */}
+                      <rect x="32" y="11" width="10" height="3" rx="1.5" fill="#FFFFFF" opacity="0.95" />
+                      <rect x="37" y="18" width="3" height="8" rx="1.5" fill="#FFFFFF" opacity="0.9" />
+                      {/* I shine */}
+                      <rect x="52" y="16" width="3.5" height="12" rx="1.75" fill="#FFFFFF" opacity="0.95" />
+                      {/* C shine */}
+                      <path d="M 72 16 C 73 11, 80 9, 84 10 C 80 11, 75 13, 75 17 Z" fill="#FFFFFF" opacity="0.95" />
+                      {/* K shine */}
+                      <rect x="94" y="15" width="3.5" height="13" rx="1.75" fill="#FFFFFF" opacity="0.95" />
+                      <rect x="105" y="13" width="7" height="3" rx="1.5" transform="rotate(30 105 13)" fill="#FFFFFF" opacity="0.95" />
+                      {/* I shine */}
+                      <rect x="133" y="16" width="3.5" height="12" rx="1.75" fill="#FFFFFF" opacity="0.95" />
+                      {/* T shine */}
+                      <rect x="150" y="11" width="10" height="3" rx="1.5" fill="#FFFFFF" opacity="0.95" />
+                      <rect x="155" y="18" width="3" height="8" rx="1.5" fill="#FFFFFF" opacity="0.9" />
+                    </svg>
+                  </div>
+
+                  {/* Right 2 action dashes near IT */}
+                  <svg className="dashes-right-it" width="20" height="24" viewBox="0 0 20 24" fill="none">
+                    <path d="M 4 8 L 16 3" stroke="#111111" strokeWidth="2.8" strokeLinecap="round" />
+                    <path d="M 4 17 L 17 18" stroke="#111111" strokeWidth="2.8" strokeLinecap="round" />
+                  </svg>
+                </div>
+
+                {/* Row 2: YOUR WAY in golden yellow with 3D shadow and action dashes */}
+                <div className="title-row-your-way">
+                  <div className="bubble-text-wrapper your-way-wrap">
+                    <span className="title-your-way">YOUR WAY</span>
+                    {/* SVG Glossy Specular Shine Overlay */}
+                    <svg className="bubble-shine-overlay" viewBox="0 0 220 54" fill="none">
+                      {/* Y shine */}
+                      <rect x="12" y="12" width="7" height="3" rx="1.5" transform="rotate(-30 12 12)" fill="#FFFFFF" opacity="0.95" />
+                      <rect x="25" y="10" width="7" height="3" rx="1.5" transform="rotate(30 25 10)" fill="#FFFFFF" opacity="0.95" />
+                      {/* O shine */}
+                      <path d="M 43 18 C 44 12, 52 10, 56 12 C 51 13, 46 16, 46 20 Z" fill="#FFFFFF" opacity="0.95" />
+                      {/* U shine */}
+                      <rect x="73" y="16" width="3.5" height="11" rx="1.75" fill="#FFFFFF" opacity="0.95" />
+                      <rect x="88" y="16" width="3.5" height="8" rx="1.75" fill="#FFFFFF" opacity="0.9" />
+                      {/* R shine */}
+                      <path d="M 103 16 C 104 11, 111 10, 115 12 C 111 13, 106 15, 106 18 Z" fill="#FFFFFF" opacity="0.95" />
+                      <rect x="103" y="22" width="3.5" height="7" rx="1.75" fill="#FFFFFF" opacity="0.9" />
+                      {/* W shine */}
+                      <rect x="135" y="15" width="3.5" height="11" rx="1.75" fill="#FFFFFF" opacity="0.95" />
+                      <rect x="146" y="17" width="3.5" height="9" rx="1.75" fill="#FFFFFF" opacity="0.9" />
+                      <rect x="157" y="15" width="3.5" height="11" rx="1.75" fill="#FFFFFF" opacity="0.95" />
+                      {/* A shine */}
+                      <path d="M 174 20 C 175 14, 182 13, 186 15 C 182 16, 177 18, 177 22 Z" fill="#FFFFFF" opacity="0.95" />
+                      {/* Y shine */}
+                      <rect x="202" y="12" width="7" height="3" rx="1.5" transform="rotate(-30 202 12)" fill="#FFFFFF" opacity="0.95" />
+                      <rect x="215" y="10" width="7" height="3" rx="1.5" transform="rotate(30 215 10)" fill="#FFFFFF" opacity="0.95" />
+                    </svg>
+                  </div>
+
+                  {/* Right 2 action dashes on WAY */}
+                  <svg className="dashes-right-way" width="22" height="26" viewBox="0 0 22 26" fill="none">
+                    <path d="M 4 8 L 18 6" stroke="#111111" strokeWidth="2.8" strokeLinecap="round" />
+                    <path d="M 3 19 L 16 23" stroke="#111111" strokeWidth="2.8" strokeLinecap="round" />
+                  </svg>
+                </div>
               </div>
-              <h1 className="hero-mobile-title">
-                <span className="title-stick-it">STICK IT</span>
-                <span className="title-your-way">YOUR WAY</span>
-              </h1>
             </div>
 
             {/* 100+ Original Designs Callout Badge */}
@@ -539,31 +616,37 @@ export const Hero = ({ onExploreStickers, onExploreSkins }) => {
                 <span className="badge-pink-num">100+</span>
                 <span className="badge-label">ORIGINAL<br />DESIGNS</span>
               </div>
-              {/* Crown and arrow doodles */}
-              <div className="hero-mobile-badge-doodles">
-                <svg width="44" height="38" viewBox="0 0 44 38" fill="none">
-                  <path d="M6 14L11 20L18 12L25 20L30 14L28 24H8L6 14Z" stroke="#111111" strokeWidth="2.4" strokeLinejoin="round" fill="none" />
-                  <path d="M28 8C33 13 32 22 25 28" stroke="#111111" strokeWidth="2.2" strokeLinecap="round" strokeDasharray="3 3" />
-                  <path d="M25 24L25 29L30 28" stroke="#111111" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
             </div>
           </div>
 
           <p className="hero-mobile-sub">
-            Stickers &amp; skins for people who don't do boring. Handcrafted with genuine 3M™ Cast Vinyl in India.
+            Stickers &amp; skins for people who don't do boring.<br />
+            Handcrafted with genuine 3M™ Cast Vinyl<br />
+            in India.
           </p>
 
           {/* Yellow brush curve accent */}
           <div className="hero-mobile-brush-stroke">
-            <svg width="190" height="12" viewBox="0 0 190 12" fill="none">
-              <path d="M4 8C45 2 130 2 186 9" stroke="#FFD84D" strokeWidth="6" strokeLinecap="round" />
+            <svg width="155" height="12" viewBox="0 0 155 12" fill="none">
+              <path d="M 4 8 C 42 4, 105 4, 151 7" stroke="#FFD84D" strokeWidth="6" strokeLinecap="round" />
             </svg>
           </div>
         </div>
 
-        {/* Visual Breathing Room for the background illustration's stickers & skins */}
-        <div className="hero-mobile-visual-space" />
+        {/* Mobile Center Showcase: Kawaii Sticker Tech Collage (Stickers + MacBook + Phone) */}
+        <div className="hero-mobile-collage-wrap">
+          <img
+            src="/images/kawaii_sticker_tech_collage.webp"
+            alt="CHOMPI LAB Die-Cut Stickers & Precision Skins Collage"
+            className="hero-mobile-collage-img"
+            loading="eager"
+            decoding="async"
+            onClick={() => {
+              sound.pop(600);
+              onExploreStickers?.();
+            }}
+          />
+        </div>
 
         {/* Mobile Action Buttons and Benefits Card */}
         <div className="hero-mobile-footer">
@@ -640,11 +723,11 @@ export const Hero = ({ onExploreStickers, onExploreSkins }) => {
         /* Mobile specific layout and background */
         @media (max-width: 768px) {
           #hero.hero-section {
-            background-image: url('/images/playful_sticker_shop_display.png') !important;
+            background-image: url('/images/kawaii_pastel_doodle_wallpaper.webp') !important;
             background-repeat: no-repeat !important;
             background-position: center top !important;
-            background-size: 100% auto !important;
-            background-color: #FEF9E6 !important;
+            background-size: cover !important;
+            background-color: #FDFAEC !important;
             min-height: 100vh !important;
             padding-top: 105px !important;
             padding-bottom: 24px !important;
@@ -674,8 +757,9 @@ export const Hero = ({ onExploreStickers, onExploreSkins }) => {
             align-items: flex-start;
             text-align: left;
             position: relative;
-            padding-left: 4px;
-            padding-right: 4px;
+            padding-left: 12px;
+            padding-right: 8px;
+            padding-top: 6px;
           }
 
           .hero-mobile-headline-row {
@@ -683,44 +767,103 @@ export const Hero = ({ onExploreStickers, onExploreSkins }) => {
             align-items: flex-start;
             justify-content: space-between;
             width: 100%;
-            gap: 8px;
+            gap: 6px;
           }
 
           .hero-mobile-title-wrap {
             position: relative;
+            flex: 1;
+            min-width: 0;
+            padding-left: 6px;
           }
 
-          .hero-mobile-rays {
-            margin-bottom: -4px;
-            margin-left: 4px;
+          .title-doodle-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
           }
 
-          .hero-mobile-title {
-            margin: 0;
-            line-height: 0.95;
+          .title-row-stick-it {
+            display: inline-flex;
+            align-items: center;
+            position: relative;
+            transform: rotate(-5.5deg);
+            transform-origin: left bottom;
+          }
+
+          .rays-top-left {
+            position: absolute;
+            top: -18px;
+            left: 2px;
+            pointer-events: none;
+          }
+
+          .dashes-left {
+            position: absolute;
+            left: -15px;
+            top: 10px;
+            pointer-events: none;
+          }
+
+          .dashes-right-it {
+            position: absolute;
+            right: -20px;
+            top: 4px;
+            pointer-events: none;
+          }
+
+          .bubble-text-wrapper {
+            position: relative;
+            display: inline-block;
+          }
+
+          .bubble-shine-overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
           }
 
           .title-stick-it {
             display: block;
-            font-family: var(--font-display, "Space Grotesk", sans-serif);
-            font-size: clamp(34px, 9.5vw, 44px);
-            font-weight: 900;
-            letter-spacing: -0.04em;
+            font-family: 'Baberry', var(--font-display, cursive, sans-serif);
+            font-size: clamp(38px, 10.5vw, 46px);
+            font-weight: normal;
+            letter-spacing: 0.02em;
             color: #111111;
-            line-height: 0.95;
+            line-height: 1;
+            user-select: none;
+          }
+
+          .title-row-your-way {
+            display: inline-flex;
+            align-items: center;
+            position: relative;
             transform: rotate(-1.5deg);
+            transform-origin: left top;
+            margin-top: -3px;
+            margin-left: 2px;
           }
 
           .title-your-way {
             display: block;
-            font-family: var(--font-display, "Space Grotesk", sans-serif);
-            font-size: clamp(38px, 10.5vw, 48px);
-            font-weight: 900;
-            letter-spacing: -0.03em;
-            color: #FFC800;
-            line-height: 0.95;
-            text-shadow: 0 3px 0 #E5AC00, 0 5px 12px rgba(229, 172, 0, 0.3);
-            transform: rotate(1deg);
+            font-family: 'Baberry', var(--font-display, cursive, sans-serif);
+            font-size: clamp(42px, 11.5vw, 52px);
+            font-weight: normal;
+            letter-spacing: 0.02em;
+            color: #FFB703;
+            line-height: 1;
+            text-shadow: 0 4px 0 #D48800, 0 6px 14px rgba(212, 136, 0, 0.25);
+            user-select: none;
+          }
+
+          .dashes-right-way {
+            position: absolute;
+            right: -22px;
+            top: 12px;
+            pointer-events: none;
           }
 
           .hero-mobile-badge-callout {
@@ -728,64 +871,93 @@ export const Hero = ({ onExploreStickers, onExploreSkins }) => {
             flex-direction: column;
             align-items: center;
             position: relative;
-            margin-top: 4px;
+            margin-top: 2px;
+            margin-right: 4px;
             flex-shrink: 0;
           }
 
           .hero-mobile-badge-pill {
             background: #FFFFFF;
-            border: 1.5px dashed #111111;
-            border-radius: 12px;
-            padding: 5px 8px;
+            border: 2px dashed #111111;
+            border-radius: 18px;
+            padding: 7px 11px 8px;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
           }
 
           .badge-pink-num {
-            background: #FF2E93;
+            background: #FF2B85;
             color: #FFFFFF;
+            font-family: var(--font-display, "Space Grotesk", sans-serif);
             font-weight: 900;
-            font-size: 13.5px;
-            padding: 2px 7px;
+            font-size: 14.5px;
+            line-height: 1;
+            padding: 3px 9px 4px;
             border-radius: 999px;
             display: inline-block;
             transform: rotate(-4deg);
+            box-shadow: 0 2px 5px rgba(255, 43, 133, 0.25);
           }
 
           .badge-label {
             display: block;
-            font-size: 8.5px;
+            font-family: var(--font-display, "Space Grotesk", sans-serif);
+            font-size: 9px;
             font-weight: 900;
             color: #111111;
-            letter-spacing: 0.04em;
-            line-height: 1.15;
-            margin-top: 3px;
-          }
-
-          .hero-mobile-badge-doodles {
-            margin-top: -4px;
-            margin-right: -6px;
+            letter-spacing: 0.06em;
+            line-height: 1.18;
+            margin-top: 4px;
+            text-align: center;
           }
 
           .hero-mobile-sub {
+            font-family: var(--font-sans, "Plus Jakarta Sans", sans-serif);
             font-size: 13.5px;
-            font-weight: 600;
-            color: #2c2c2c;
-            line-height: 1.35;
-            margin-top: 8px;
-            margin-bottom: 4px;
-            max-width: 320px;
+            font-weight: 700;
+            color: #1a1a1a;
+            line-height: 1.42;
+            margin-top: 12px;
+            margin-bottom: 2px;
+            margin-left: 6px;
+            max-width: 310px;
+            letter-spacing: -0.01em;
           }
 
           .hero-mobile-brush-stroke {
-            margin-top: 2px;
+            margin-top: 3px;
             margin-bottom: 8px;
+            margin-left: 6px;
           }
 
-          .hero-mobile-visual-space {
-            flex: 1;
-            min-height: clamp(170px, 32vh, 260px);
-            pointer-events: none;
+          .hero-mobile-collage-wrap {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-top: -6px;
+            margin-bottom: 8px;
+            z-index: 10;
+          }
+
+          .hero-mobile-collage-img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.10));
+            user-select: none;
+            cursor: pointer;
+            transition: transform 0.25s ease;
+          }
+
+          .hero-mobile-collage-img:active {
+            transform: scale(0.98);
           }
 
           .hero-mobile-footer {

@@ -38,6 +38,7 @@ export const ProductCard = ({ product, onAddToCart, onQuickView }) => {
           src={product.image}
           alt={product.name}
           loading="lazy"
+          decoding="async"
           className="product-img"
         />
 

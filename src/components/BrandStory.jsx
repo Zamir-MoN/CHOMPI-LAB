@@ -183,9 +183,9 @@ export const BrandStory = () => {
                 }}
               >
                 <img
-                  src="/images/chompi_logo.png"
+                  src="/images/chompi_logo.webp"
                   alt="CHOMPI LAB"
-                  style={{ height: '28px', width: 'auto' }}
+                  style={{ height: '40px', width: 'auto' }}
                 />
               </div>
 

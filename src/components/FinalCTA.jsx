@@ -1,6 +1,5 @@
 import React from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
-import { ChompiMonster, StarSticker, BoltSticker, SmileySticker } from './ChompiStickers';
 import { sound } from '../utils/audio';
 
 export const FinalCTA = ({ onExploreStickers, onExploreSkins }) => {
@@ -17,85 +16,20 @@ export const FinalCTA = ({ onExploreStickers, onExploreSkins }) => {
         <div
           style={{
             position: 'relative',
-            backgroundColor: '#111111',
-            borderRadius: 'var(--radius-xl)',
-            padding: 'clamp(48px, 8vw, 100px) clamp(24px, 5vw, 60px)',
+            backgroundColor: '#0F1015',
+            backgroundImage: "url('/images/kawaii_banner_bg.webp')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            borderRadius: 'var(--radius-xl, 32px)',
+            padding: 'clamp(56px, 8vw, 100px) clamp(24px, 5vw, 60px)',
             textAlign: 'center',
             color: '#FFFFFF',
             overflow: 'hidden',
-            boxShadow: '0 30px 80px rgba(0, 0, 0, 0.25)',
+            boxShadow: '0 30px 80px rgba(0, 0, 0, 0.35)',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
           }}
         >
-          {/* Subtle Background Glow */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              width: '60%',
-              height: '60%',
-              background: 'radial-gradient(circle, rgba(255, 117, 72, 0.2) 0%, transparent 70%)',
-              pointerEvents: 'none',
-            }}
-          />
-
-          {/* Floating Stickers around CTA */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '18%',
-              left: '8%',
-              transform: 'rotate(-16deg)',
-              pointerEvents: 'auto',
-            }}
-            className="animate-float"
-            onClick={() => sound.pop(620)}
-          >
-            <ChompiMonster size={90} color="var(--orange)" />
-          </div>
-
-          <div
-            style={{
-              position: 'absolute',
-              top: '20%',
-              right: '10%',
-              transform: 'rotate(18deg)',
-              pointerEvents: 'auto',
-            }}
-            className="animate-bob"
-            onClick={() => sound.pop(740)}
-          >
-            <StarSticker size={85} color="var(--yellow)" />
-          </div>
-
-          <div
-            style={{
-              position: 'absolute',
-              bottom: '16%',
-              left: '12%',
-              transform: 'rotate(8deg)',
-              pointerEvents: 'auto',
-            }}
-            className="animate-bob"
-            onClick={() => sound.pop(540)}
-          >
-            <BoltSticker size={75} color="var(--blue)" />
-          </div>
-
-          <div
-            style={{
-              position: 'absolute',
-              bottom: '18%',
-              right: '12%',
-              transform: 'rotate(-12deg)',
-              pointerEvents: 'auto',
-            }}
-            className="animate-float"
-            onClick={() => sound.pop(680)}
-          >
-            <SmileySticker size={80} color="var(--green)" />
-          </div>
 
           {/* Center Content */}
           <div style={{ position: 'relative', zIndex: 10, maxWidth: '780px', margin: '0 auto' }}>

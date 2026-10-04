@@ -13,31 +13,31 @@ export const FlexCarouselSection = ({ onExplore }) => {
 
   const drops = [
     {
-      src: '/images/chompi_camo_tech.png',
+      src: '/images/chompi_camo_tech.webp',
       alt: 'Camo Flow MacBook & iPhone Skins',
       title: 'Camo Flow Tech Duo',
       subtitle: '3M Precision Skin Drop',
     },
     {
-      src: '/images/chompi_sticker_sheet.png',
+      src: '/images/chompi_sticker_sheet.webp',
       alt: 'Chompi Die-Cut Sticker Sheet',
       title: 'Chompi & Weird Friends',
       subtitle: 'Weatherproof Vinyl Sheet',
     },
     {
-      src: '/images/hero_laptop.jpg',
+      src: '/images/hero_laptop.webp',
       alt: 'Acid Terrazzo MacBook Skin',
       title: 'Acid Terrazzo 3M Skin',
       subtitle: 'Ultra-Matte Precision Fit',
     },
     {
-      src: '/images/phone_skins.jpg',
+      src: '/images/phone_skins.webp',
       alt: 'Cyber Flame Holo Phone Skins',
       title: 'Cyber Flame Holo',
       subtitle: 'Prism Holographic Reflection',
     },
     {
-      src: '/images/sticker_pack.jpg',
+      src: '/images/sticker_pack.webp',
       alt: '18-Sticker Mega Vinyl Pack',
       title: 'Weird Friends Mega Pack',
       subtitle: '18 Heavy-Gauge Die-Cuts',

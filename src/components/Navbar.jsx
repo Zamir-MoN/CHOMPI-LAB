@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ShoppingBag, Search, Menu, X, ArrowUpRight, Gift, Copy, Check, Truck } from 'lucide-react';
+import { ShoppingBag, Menu, X, ArrowUpRight, Gift, Copy, Check, Truck } from 'lucide-react';
 import gsap from 'gsap';
+import { StaggeredMenu } from './StaggeredMenu';
+import { sound } from '../utils/audio';
 
 export const Navbar = ({ cartCount = 1, onOpenCart, onNavigate }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [couponCopied, setCouponCopied] = useState(false);
   const [activeTab, setActiveTab] = useState('featured');
-  const mobileMenuRef = useRef(null);
-  const menuLinksRef = useRef([]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,31 +18,14 @@ export const Navbar = ({ cartCount = 1, onOpenCart, onNavigate }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // GSAP animation for mobile menu
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-      gsap.fromTo(
-        mobileMenuRef.current,
-        { opacity: 0, y: -20, pointerEvents: 'none' },
-        { opacity: 1, y: 0, pointerEvents: 'auto', duration: 0.35, ease: 'power3.out' }
-      );
-      gsap.fromTo(
-        menuLinksRef.current,
-        { y: 25, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.3, stagger: 0.06, delay: 0.1, ease: 'power2.out' }
-      );
-    } else {
-      document.body.style.overflow = '';
-    }
-  }, [mobileMenuOpen]);
+
 
   const navLinks = [
     { label: 'Featured', id: 'featured' },
     { label: 'Stickers', id: 'pick-your-canvas' },
-    { label: 'Skins', id: 'skins' },
     { label: 'Vibe Lab', id: 'vibe-lab' },
     { label: 'Why Chompi', id: 'why-chompi' },
+    { label: 'Reviews', id: 'reviews' },
     { label: 'Sticker Wall', id: 'sticker-wall' },
   ];
 
@@ -303,14 +286,17 @@ export const Navbar = ({ cartCount = 1, onOpenCart, onNavigate }) => {
           }}
         >
           <img
-            src="/images/chompi_logo.png"
+            src="/images/chompi_logo.webp"
             alt="CHOMPI LAB"
+            className="navbar-brand-logo"
+            loading="eager"
+            decoding="async"
             style={{
-              height: isScrolled ? '32px' : '36px',
+              height: isScrolled ? '46px' : '54px',
               width: 'auto',
               objectFit: 'contain',
               transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), height 0.3s ease',
-              filter: 'drop-shadow(0 2px 5px rgba(0,0,0,0.06))',
+              filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.08))',
             }}
             onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.06) rotate(-2deg)')}
             onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1) rotate(0deg)')}
@@ -368,36 +354,8 @@ export const Navbar = ({ cartCount = 1, onOpenCart, onNavigate }) => {
           })}
         </div>
 
-        {/* Right Action Icons: Search + Cart */}
+        {/* Right Action Icons: Cart + Hamburger */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          {/* Circular Search Icon */}
-          <button
-            onClick={() => handleNavClick('featured')}
-            aria-label="Search Catalog"
-            style={{
-              width: '38px',
-              height: '38px',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#F4F2EB',
-              color: '#222222',
-              border: 'none',
-              cursor: 'pointer',
-              transition: 'background-color 0.2s ease, transform 0.2s ease',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'scale(1.06)';
-              e.currentTarget.style.backgroundColor = '#ECE9E0';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'scale(1)';
-              e.currentTarget.style.backgroundColor = '#F4F2EB';
-            }}
-          >
-            <Search size={16} strokeWidth={2.2} />
-          </button>
 
           {/* Black Pill Cart Button with Yellow Circular Counter */}
           <button
@@ -453,9 +411,12 @@ export const Navbar = ({ cartCount = 1, onOpenCart, onNavigate }) => {
           {/* Mobile Menu Hamburger */}
           <button
             className="mobile-menu-btn"
-            onClick={() => {
-              sound.pop(500);
-              setMobileMenuOpen(!mobileMenuOpen);
+            onClick={(e) => {
+              e.stopPropagation();
+              try {
+                sound?.pop?.(500);
+              } catch {}
+              setMobileMenuOpen((prev) => !prev);
             }}
             aria-label="Toggle navigation menu"
             style={{
@@ -468,6 +429,10 @@ export const Navbar = ({ cartCount = 1, onOpenCart, onNavigate }) => {
               backgroundColor: '#F4F2EB',
               color: '#111111',
               cursor: 'pointer',
+              border: 'none',
+              outline: 'none',
+              WebkitTapHighlightColor: 'transparent',
+              touchAction: 'manipulation',
             }}
           >
             {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
@@ -475,74 +440,30 @@ export const Navbar = ({ cartCount = 1, onOpenCart, onNavigate }) => {
         </div>
       </nav>
 
-      {/* Mobile Drawer Overlay */}
-      {mobileMenuOpen && (
-        <div
-          ref={mobileMenuRef}
-          style={{
-            position: 'fixed',
-            inset: 0,
-            top: '72px',
-            backgroundColor: 'rgba(253, 251, 245, 0.98)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            padding: '32px 28px',
-            pointerEvents: 'auto',
-          }}
-        >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            <span
-              style={{
-                fontSize: '11px',
-                fontWeight: 800,
-                letterSpacing: '0.12em',
-                color: '#888',
-                textTransform: 'uppercase',
-              }}
-            >
-              Navigation
-            </span>
-            {navLinks.map((item, idx) => (
-              <button
-                key={item.id}
-                ref={(el) => (menuLinksRef.current[idx] = el)}
-                onClick={() => handleNavClick(item.id)}
-                style={{
-                  textAlign: 'left',
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '24px',
-                  fontWeight: 800,
-                  letterSpacing: '-0.02em',
-                  color: '#111111',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <span>{item.label}</span>
-                <ArrowUpRight size={20} color="#FF7548" />
-              </button>
-            ))}
-          </div>
-
-          <div
-            style={{
-              paddingTop: '20px',
-              borderTop: '1px solid rgba(0,0,0,0.06)',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '12px',
-            }}
-          >
-            <p style={{ fontSize: '12px', color: '#999' }}>
-              CHOMPI LAB © 2026 ✦ Bengaluru &amp; Mumbai
-            </p>
-          </div>
-        </div>
-      )}
+      {/* React Bits StaggeredMenu with CHOMPI Brand Palette */}
+      <StaggeredMenu
+        isOpen={mobileMenuOpen}
+        onMenuOpen={() => setMobileMenuOpen(true)}
+        onMenuClose={() => setMobileMenuOpen(false)}
+        items={navLinks.map((item) => ({
+          label: item.label,
+          id: item.id,
+          ariaLabel: `Navigate to ${item.label}`,
+          link: `#${item.id}`,
+        }))}
+        socialItems={[
+          { label: 'Instagram', link: 'https://instagram.com' },
+          { label: 'Twitter / X', link: 'https://x.com' },
+          { label: 'Discord', link: 'https://discord.com' },
+          { label: 'YouTube', link: 'https://youtube.com' },
+        ]}
+        colors={['#FFD84D', '#FF7548', '#FF3388', '#4DA2FF']}
+        accentColor="#FF7548"
+        logoUrl="/images/chompi_logo.webp"
+        displayItemNumbering={true}
+        displaySocials={true}
+        onSelectItem={(item) => handleNavClick(item.id)}
+      />
 
       {/* Responsive & Banner CSS */}
       <style>{`
@@ -777,6 +698,9 @@ export const Navbar = ({ cartCount = 1, onOpenCart, onNavigate }) => {
 
         /* Mobile single-row behavior matching user screenshot */
         @media (max-width: 768px) {
+          .navbar-brand-logo {
+            height: 42px !important;
+          }
           .banner-stars-left,
           .banner-stars-right,
           .banner-free-shipping {

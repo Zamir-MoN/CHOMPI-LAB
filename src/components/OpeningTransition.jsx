@@ -108,7 +108,7 @@ export const OpeningTransition = ({ onRevealLandingPage, onComplete }) => {
       >
         <img
           ref={logoRef}
-          src="/images/chompi_logo_white.png"
+          src="/images/chompi_logo_white.webp"
           alt="CHOMPI LAB"
           style={{
             width: 'clamp(200px, 28vw, 360px)',

@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'Baberry';
+  src: url('/fonts/Baberry.otf') format('opentype'),
+       url('/fonts/Baberry.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ==========================================================================
    CHOMPI LAB — Premium Sticker & Skin Brand Design System
    70% Premium + 30% Playful | Tactile, Rounded, Soft & High-Polish
@@ -5,6 +14,7 @@
 
 :root {
   /* Brand Color Palette */
+  --font-bubble: 'Baberry', 'Space Grotesk', cursive, sans-serif;
   --background: #FDFBF5;
   --foreground: #111111;
   --foreground-muted: #555555;

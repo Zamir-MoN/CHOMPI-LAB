@@ -135,7 +135,7 @@ export const Preloader = ({ onComplete }) => {
           }}
         >
           <img
-            src="/images/chompi_logo.png"
+            src="/images/chompi_logo.webp"
             alt="CHOMPI LAB"
             style={{
               width: 'clamp(200px, 32vw, 300px)',

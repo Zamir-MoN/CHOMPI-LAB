@@ -124,8 +124,10 @@ export const SkinCanvas = ({ onExplore }) => {
             }}
           >
             <img
-              src="/images/hero_laptop.jpg"
+              src="/images/hero_laptop.webp"
               alt="CHOMPI LAB MacBook Designer Skin"
+              loading="lazy"
+              decoding="async"
               style={{ width: '100%', height: 'auto', display: 'block' }}
             />
           </div>
@@ -151,8 +153,10 @@ export const SkinCanvas = ({ onExplore }) => {
             }}
           >
             <img
-              src="/images/phone_skins.jpg"
+              src="/images/phone_skins.webp"
               alt="CHOMPI LAB iPhone Skin"
+              loading="lazy"
+              decoding="async"
               style={{ width: '100%', height: 'auto', display: 'block' }}
             />
           </div>

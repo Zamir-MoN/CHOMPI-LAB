@@ -11,9 +11,7 @@ import { CanvasSection } from './components/canvas/CanvasSection';
 import { FeaturedProducts } from './components/FeaturedProducts';
 import { WhyChompi } from './components/WhyChompi';
 import { FlexCarouselSection } from './components/FlexCarouselSection';
-import { BuildYourVibe } from './components/BuildYourVibe';
-import { SkinShowcase } from './components/SkinShowcase';
-import { BrandStory } from './components/BrandStory';
+import { BadgeMarquee } from './components/BadgeMarquee';
 import { Testimonials } from './components/Testimonials';
 import { FinalCTA } from './components/FinalCTA';
 import { Footer } from './components/Footer';
@@ -32,7 +30,7 @@ export function App() {
       name: 'Chompi & Weird Friends Mega Pack',
       price: 449,
       quantity: 1,
-      image: '/images/sticker_pack.jpg',
+      image: '/images/sticker_pack.webp',
       finish: 'Matte & Gloss Mix',
       deviceType: 'Sticker Pack',
     },
@@ -145,20 +143,6 @@ export function App() {
     setCartItems([]);
   };
 
-  // Custom Skin from Showcase Stage
-  const handleOrderCustomSkin = (customConfig) => {
-    const customProduct = {
-      id: `custom-skin-${Date.now()}`,
-      name: `${customConfig.device} // ${customConfig.pattern}`,
-      price: customConfig.price,
-      quantity: 1,
-      image: '/images/hero_laptop.jpg',
-      finish: customConfig.finish,
-      deviceType: customConfig.device,
-    };
-    handleAddToCart(customProduct);
-  };
-
   // Smooth Lenis-powered scroll navigation
   const scrollTo = (id) => {
     if (lenisRef.current) {
@@ -249,14 +233,8 @@ export function App() {
         {/* Interactive WebGL Liquid FlexCarousel Drop Vault */}
         <FlexCarouselSection onExplore={() => scrollTo('featured')} />
 
-        {/* Interactive "Build Your Vibe" Aesthetic Lab */}
-        <BuildYourVibe onSelectVibeProducts={handleSelectVibeProducts} />
-
-        {/* 3D Hardware Skin Showcase */}
-        <SkinShowcase onOrderCustomSkin={handleOrderCustomSkin} />
-
-        {/* Brand Manifesto Story */}
-        <BrandStory />
+        {/* Dual Opposing Direction Badge Marquee */}
+        <BadgeMarquee />
 
         {/* Creator Community Proof */}
         <Testimonials />
@@ -264,7 +242,7 @@ export function App() {
         {/* Final CTA */}
         <FinalCTA
           onExploreStickers={() => scrollTo('featured')}
-          onExploreSkins={() => scrollTo('skins')}
+          onExploreSkins={() => scrollTo('featured')}
         />
       </main>
 

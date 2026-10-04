@@ -27,36 +27,35 @@ export const WhyChompi = () => {
       if (headingRef.current) {
         gsap.fromTo(
           headingRef.current,
-          { opacity: 0, y: 40 },
+          { opacity: 0, y: 30 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            ease: 'power3.out',
+            duration: 0.7,
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: headingRef.current,
-              start: 'top 82%',
-              toggleActions: 'play none none reverse',
+              start: 'top 85%',
+              once: true,
             },
           }
         );
       }
 
-      // 2. Swiper Card Deck entrance animation
+      // 2. Swiper Card Deck entrance animation (clean, no scale nesting)
       if (deckWrapperRef.current) {
         gsap.fromTo(
           deckWrapperRef.current,
-          { opacity: 0, y: 60, scale: 0.92 },
+          { opacity: 0, y: 30 },
           {
             opacity: 1,
             y: 0,
-            scale: 1,
-            duration: 0.95,
-            ease: 'power3.out',
+            duration: 0.7,
+            ease: 'power2.out',
             scrollTrigger: {
               trigger: deckWrapperRef.current,
-              start: 'top 80%',
-              toggleActions: 'play none none reverse',
+              start: 'top 85%',
+              once: true,
             },
           }
         );
@@ -85,65 +84,57 @@ export const WhyChompi = () => {
       id="why-chompi"
       ref={sectionRef}
       style={{
-        padding: 'clamp(80px, 11vh, 120px) 0',
-        backgroundColor: 'var(--background)',
+        paddingTop: 'clamp(85px, 11vh, 115px)',
+        paddingBottom: 'clamp(20px, 3vh, 36px)',
+        minHeight: '100vh',
+        boxSizing: 'border-box',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        backgroundColor: '#FFFBF2',
+        backgroundImage: "url('/images/playful_pastel_labscape.webp')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
         position: 'relative',
         overflow: 'hidden',
       }}
     >
-      <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+      <div className="container" style={{ position: 'relative', zIndex: 2, width: '100%' }}>
         {/* Section Header */}
         <div
           ref={headingRef}
           style={{
             textAlign: 'center',
-            marginBottom: 'clamp(40px, 6vh, 56px)',
+            marginBottom: 'clamp(14px, 2.2vh, 22px)',
           }}
         >
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              backgroundColor: 'rgba(17, 17, 17, 0.05)',
-              padding: '6px 16px',
-              borderRadius: '999px',
-              fontSize: '11px',
-              fontWeight: 800,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              color: '#111111',
-              marginBottom: '14px',
-            }}
-          >
-            <span>Lab Standards</span>
-          </div>
-
           <h2
             style={{
-              fontSize: 'clamp(34px, 5.5vw, 60px)',
+              fontSize: 'clamp(28px, 3.8vw, 46px)',
               fontWeight: 900,
               letterSpacing: '-0.03em',
-              lineHeight: 1.05,
+              lineHeight: 1.1,
               color: 'var(--foreground)',
+              margin: '0 0 6px',
             }}
           >
             WHY CHOMPI LAB?
           </h2>
           <p
             style={{
-              maxWidth: '560px',
-              margin: '14px auto 0',
-              fontSize: 'clamp(15px, 2vw, 18px)',
+              maxWidth: '520px',
+              margin: '0 auto',
+              fontSize: 'clamp(13px, 1.4vw, 15px)',
               color: 'var(--foreground-muted)',
-              lineHeight: 1.5,
+              lineHeight: 1.45,
             }}
           >
             We engineered device skins and vinyl stickers so obsessively good that your tech feels brand new again.
           </p>
         </div>
 
-        {/* 3D Stacked Cards Deck (Swiper EffectCards) */}
+        {/* 3D Stacked Cards Deck (Optimized Swiper EffectCards) */}
         <div
           ref={deckWrapperRef}
           style={{
@@ -151,7 +142,7 @@ export const WhyChompi = () => {
             width: '100%',
             maxWidth: '520px',
             margin: '0 auto',
-            padding: '20px 0 10px',
+            padding: '4px 0',
           }}
         >
           <Swiper
@@ -159,11 +150,13 @@ export const WhyChompi = () => {
             effect="cards"
             grabCursor={true}
             rewind={true}
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            }}
+            speed={380}
+            touchAngle={35}
+            threshold={8}
+            touchStartPreventDefault={false}
+            touchMoveStopPropagation={false}
+            passiveListeners={true}
+            watchSlidesProgress={true}
             pagination={{
               el: '.why-chompi-pagination',
               clickable: true,
@@ -171,13 +164,12 @@ export const WhyChompi = () => {
             cardsEffect={{
               perSlideRotate: 4,
               perSlideOffset: 12,
-              slideShadows: true,
+              slideShadows: false, // Disabled heavy real-time shadows for 60fps smoothness
             }}
-            onSlideChange={() => sound.pop(520)}
-            modules={[EffectCards, Autoplay, Pagination, Navigation]}
+            modules={[EffectCards, Pagination, Navigation]}
             style={{
-              width: 'clamp(280px, 86vw, 360px)',
-              height: 'clamp(420px, 56vh, 460px)',
+              width: 'clamp(260px, 80vw, 320px)',
+              height: 'clamp(320px, 44vh, 375px)',
               margin: '0 auto',
               overflow: 'visible',
             }}
@@ -185,16 +177,17 @@ export const WhyChompi = () => {
             {WHY_CHOMPI_POINTS.map((item, idx) => (
               <SwiperSlide
                 key={item.number}
+                className="why-chompi-slide-card"
                 onClick={() => {
                   sound.pop(540);
                   swiper?.slideNext();
                 }}
                 style={{
                   backgroundColor: '#FFFFFF',
-                  borderRadius: '32px',
-                  padding: 'clamp(28px, 4.5vw, 36px) clamp(24px, 4vw, 32px)',
+                  borderRadius: '24px',
+                  padding: 'clamp(18px, 2.6vh, 24px) clamp(18px, 2.5vw, 24px)',
                   border: '1px solid rgba(17, 17, 17, 0.08)',
-                  boxShadow: '0 20px 48px rgba(0, 0, 0, 0.08)',
+                  boxShadow: '0 14px 34px rgba(0, 0, 0, 0.08)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
@@ -202,16 +195,20 @@ export const WhyChompi = () => {
                   overflow: 'hidden',
                   userSelect: 'none',
                   cursor: 'grab',
+                  transform: 'translate3d(0, 0, 0)',
+                  WebkitBackfaceVisibility: 'hidden',
+                  backfaceVisibility: 'hidden',
+                  willChange: 'transform',
                 }}
               >
                 {/* Giant Watermark Number */}
                 <div
                   style={{
                     position: 'absolute',
-                    top: '16px',
-                    right: '24px',
+                    top: '12px',
+                    right: '18px',
                     fontFamily: 'var(--font-display, "Space Grotesk", sans-serif)',
-                    fontSize: '68px',
+                    fontSize: '52px',
                     fontWeight: 900,
                     color: 'rgba(17, 17, 17, 0.06)',
                     userSelect: 'none',
@@ -225,14 +222,14 @@ export const WhyChompi = () => {
                 <div>
                   <div
                     style={{
-                      width: '56px',
-                      height: '56px',
-                      borderRadius: '18px',
+                      width: '46px',
+                      height: '46px',
+                      borderRadius: '14px',
                       backgroundColor: item.bg,
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      marginBottom: '26px',
+                      marginBottom: '14px',
                     }}
                   >
                     {getIcon(idx)}
@@ -240,12 +237,12 @@ export const WhyChompi = () => {
 
                   <div
                     style={{
-                      fontSize: '11px',
+                      fontSize: '10px',
                       fontWeight: 800,
                       letterSpacing: '0.08em',
                       textTransform: 'uppercase',
                       color: item.color,
-                      marginBottom: '10px',
+                      marginBottom: '6px',
                     }}
                   >
                     {item.subtitle}
@@ -254,11 +251,11 @@ export const WhyChompi = () => {
                   <h3
                     style={{
                       fontFamily: 'var(--font-display, "Space Grotesk", sans-serif)',
-                      fontSize: 'clamp(22px, 3vw, 24px)',
+                      fontSize: 'clamp(18px, 2.2vw, 21px)',
                       fontWeight: 900,
                       letterSpacing: '-0.02em',
                       color: 'var(--foreground, #111111)',
-                      marginBottom: '14px',
+                      marginBottom: '8px',
                       lineHeight: 1.15,
                     }}
                   >
@@ -267,9 +264,10 @@ export const WhyChompi = () => {
 
                   <p
                     style={{
-                      fontSize: '15px',
+                      fontSize: '13px',
                       color: 'var(--foreground-muted, #71717A)',
-                      lineHeight: 1.6,
+                      lineHeight: 1.45,
+                      margin: 0,
                     }}
                   >
                     {item.desc}
@@ -280,21 +278,21 @@ export const WhyChompi = () => {
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '8px',
-                    marginTop: '20px',
-                    fontSize: '12px',
+                    gap: '7px',
+                    marginTop: '12px',
+                    fontSize: '11px',
                     fontWeight: 700,
                     color: 'var(--foreground, #111111)',
                   }}
                 >
                   <span
                     style={{
-                      width: '8px',
-                      height: '8px',
+                      width: '7px',
+                      height: '7px',
                       borderRadius: '50%',
                       backgroundColor: item.color,
                       display: 'inline-block',
-                      boxShadow: `0 0 10px ${item.color}`,
+                      boxShadow: `0 0 8px ${item.color}`,
                     }}
                   />
                   <span>Laboratory Tested</span>
@@ -309,8 +307,8 @@ export const WhyChompi = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '18px',
-              marginTop: '28px',
+              gap: '14px',
+              marginTop: '14px',
             }}
           >
             <button
@@ -322,7 +320,7 @@ export const WhyChompi = () => {
                 swiper?.slidePrev();
               }}
             >
-              <ChevronLeft size={20} />
+              <ChevronLeft size={18} />
             </button>
 
             {/* Pagination Dots */}
@@ -345,22 +343,8 @@ export const WhyChompi = () => {
                 swiper?.slideNext();
               }}
             >
-              <ChevronRight size={20} />
+              <ChevronRight size={18} />
             </button>
-          </div>
-
-          <div
-            style={{
-              textAlign: 'center',
-              marginTop: '10px',
-              fontSize: '11px',
-              fontWeight: 600,
-              letterSpacing: '0.04em',
-              textTransform: 'uppercase',
-              color: 'var(--foreground-subtle, #A1A1AA)',
-            }}
-          >
-            Swipe or use arrows to shuffle cards
           </div>
         </div>
       </div>
@@ -404,8 +388,12 @@ export const WhyChompi = () => {
           background-color: #111111;
           border-radius: 999px;
         }
-        .swiper-slide-shadow {
-          border-radius: 32px !important;
+        .why-chompi-slide-card {
+          will-change: transform;
+          transform: translate3d(0, 0, 0);
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+          contain: paint;
         }
       `}</style>
     </section>

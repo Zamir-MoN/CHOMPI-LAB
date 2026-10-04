@@ -140,8 +140,10 @@ export const StickerCanvas = ({ onExplore }) => {
             }}
           >
             <img
-              src="/images/sticker_pack.jpg"
-              alt="CHOMPI LAB Die-Cut Stickers Pack"
+              src="/images/sticker_pack.webp"
+              alt="CHOMPI LAB Sticker Pack"
+              loading="lazy"
+              decoding="async"
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </div>
@@ -169,8 +171,10 @@ export const StickerCanvas = ({ onExplore }) => {
             }}
           >
             <img
-              src="/images/sticker_pack.jpg"
+              src="/images/sticker_pack.webp"
               alt="CHOMPI LAB Sticker Sheet"
+              loading="lazy"
+              decoding="async"
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </div>

@@ -267,8 +267,10 @@ export const CartDrawer = ({
                   }}
                 >
                   <img
-                    src={item.image || '/images/hero_laptop.jpg'}
+                    src={item.image || '/images/hero_laptop.webp'}
                     alt={item.name}
+                    loading="lazy"
+                    decoding="async"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                 </div>
