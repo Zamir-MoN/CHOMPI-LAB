@@ -66,20 +66,20 @@ export function playIntro({
       },
     });
 
-    // 1. Initial Black Screen Hold (0.0s -> 0.40s)
-    intro.to({}, { duration: 0.40 });
+    // 1. Initial Black Screen Hold & Botanical Bloom (0.0s -> 0.40s)
+    intro.to({}, { duration: 0.20 });
 
-    // 2. Center Logo + Subtext Reveal (0.40s -> 1.05s)
+    // 2. Garden Canvas & Subtext Reveal (0.20s -> 0.85s)
     if (logoElement) {
       intro.to(
         logoElement,
         {
           opacity: 1,
           scale: 1,
-          duration: 0.65,
+          duration: 0.75,
           ease: 'power2.out',
         },
-        0.40
+        0.20
       );
     }
 
@@ -89,29 +89,29 @@ export function playIntro({
         {
           opacity: 0.75,
           scale: 1,
-          duration: 0.60,
+          duration: 0.70,
           ease: 'power2.out',
         },
-        0.55
+        0.70
       );
     }
 
-    // 3. Relaxed Anticipation Hold (1.05s -> 2.15s)
-    intro.to({}, { duration: 1.10 });
+    // 3. Relaxed Full Bloom Anticipation Hold (0.85s -> 2.85s, allowing roses to unfurl & breathe)
+    intro.to({}, { duration: 2.00 });
 
-    // 4. Center Logo & Text Fade Out (2.15s -> 2.45s)
+    // 4. Center Botanical Garden & Subtext Fade Out (2.85s -> 3.15s)
     intro.to(
       [logoElement, subtextElement].filter(Boolean),
       {
         opacity: 0,
-        scale: 0.98,
-        duration: 0.28,
+        scale: 1.02,
+        duration: 0.32,
         ease: 'power2.inOut',
       },
-      2.15
+      2.85
     );
 
-    // 5. GEOMETRIC STEPPED WIPE (2.45s -> 3.65s)
+    // 5. GEOMETRIC STEPPED WIPE (3.15s -> 4.35s)
     // Center row parts ways first, revealing the landing page directly in the center
     // Outer rows follow symmetrically in a staircase sequence
     const totalRows = shutterRows.length;
@@ -123,8 +123,8 @@ export function playIntro({
       const distanceFromCenter = Math.abs(i - centerIndex);
       const normDist = distanceFromCenter / (centerIndex || 1);
 
-      // Stagger: Center row starts at 2.45s, each subsequent row delayed by 0.08s
-      const rowStartTime = 2.45 + distanceFromCenter * 0.08;
+      // Stagger: Center row starts at 3.15s, each subsequent row delayed by 0.08s
+      const rowStartTime = 3.15 + distanceFromCenter * 0.08;
       const rowDuration = 0.92 - normDist * 0.06;
 
       // Left black curtain slides off to the left (-101% to clear subpixels)
@@ -150,13 +150,13 @@ export function playIntro({
       );
     });
 
-    // 6. Callback at ~85% coverage to settle landing page elements (~3.35s)
+    // 6. Callback at ~85% coverage to settle landing page elements (~4.05s)
     intro.call(
       () => {
         if (onRevealLandingPage) onRevealLandingPage();
       },
       null,
-      3.35
+      4.05
     );
 
     // 7. Complete: clean up container styles
@@ -167,7 +167,7 @@ export function playIntro({
         duration: 0.15,
         ease: 'none',
       },
-      3.70
+      4.40
     );
   }, container);
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { playIntro, destroyIntro } from '../animations/introAnimation';
+import { ChompiGardenIntro } from './ChompiGardenIntro';
 
 export const OpeningTransition = ({ onRevealLandingPage, onComplete }) => {
   const containerRef = useRef(null);
@@ -89,7 +90,7 @@ export const OpeningTransition = ({ onRevealLandingPage, onComplete }) => {
         pointerEvents: 'auto',
       }}
     >
-      {/* PHASE 2 & 3: Minimal Center Logo + Subtext */}
+      {/* PHASE 2 & 3: Living Botanical Type Garden "CHOMPI.LAB" + Subtext */}
       <div
         ref={textWrapRef}
         className="intro-center"
@@ -106,31 +107,35 @@ export const OpeningTransition = ({ onRevealLandingPage, onComplete }) => {
           userSelect: 'none',
         }}
       >
-        <img
+        <div
           ref={logoRef}
-          src="/images/chompi_logo_white.webp"
-          alt="CHOMPI LAB"
           style={{
-            width: 'clamp(200px, 28vw, 360px)',
-            height: 'auto',
-            objectFit: 'contain',
+            position: 'relative',
+            width: 'min(94vw, 1080px)',
+            height: 'clamp(140px, 20vh, 210px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             opacity: 0,
-            filter: 'drop-shadow(0 12px 28px rgba(255, 255, 255, 0.15))',
           }}
-        />
+        >
+          <ChompiGardenIntro text="CHOMPI.LAB" />
+        </div>
+
         <div
           ref={subtextRef}
           className="intro-subtext"
           style={{
             fontFamily: "'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-            fontSize: 'clamp(9.5px, 0.95vw, 12px)',
+            fontSize: 'clamp(11px, 1.1vw, 13.5px)',
             fontWeight: 600,
-            letterSpacing: '0.24em',
+            letterSpacing: '0.28em',
             textTransform: 'uppercase',
-            color: 'rgba(255, 255, 255, 0.70)',
+            color: 'rgba(255, 255, 255, 0.75)',
             opacity: 0,
             lineHeight: 1,
-            marginTop: '2px',
+            marginTop: '0px',
+            textAlign: 'center',
           }}
         >
           THE FIRST-EVER CHOMPI DROP.

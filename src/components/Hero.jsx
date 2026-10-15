@@ -12,6 +12,7 @@ import {
   BadgeSticker,
   FlowerSticker,
 } from './ChompiStickers';
+import { ChompiGardenHeading } from './ChompiGardenHeading';
 
 export const Hero = ({ onExploreStickers, onExploreSkins }) => {
   const heroRef = useRef(null);
@@ -400,27 +401,37 @@ export const Hero = ({ onExploreStickers, onExploreSkins }) => {
           flexDirection: 'column',
           alignItems: 'center',
           textAlign: 'center',
-          maxWidth: '920px',
+          maxWidth: '1180px',
+          width: '100%',
         }}
       >
-        {/* Hero Black Logo Display */}
-        <div ref={titleRef} style={{ marginBottom: '36px', display: 'flex', justifyContent: 'center' }}>
-          <img
-            src="/images/chompi_logo.webp"
-            alt="CHOMPI LAB"
-            className="hero-line"
-            loading="eager"
-            decoding="async"
+        {/* Living Botanical "CHOMPI.LAB" Garden Centerpiece */}
+        <div
+          ref={titleRef}
+          style={{
+            marginBottom: '28px',
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <ChompiGardenHeading text="CHOMPI.LAB" palette="paper" />
+          <div
             style={{
-              width: 'clamp(280px, 44vw, 560px)',
-              height: 'auto',
-              objectFit: 'contain',
-              display: 'block',
-              filter: 'drop-shadow(0 14px 34px rgba(0, 0, 0, 0.10))',
-              userSelect: 'none',
-              pointerEvents: 'none',
+              fontFamily: 'var(--font-display)',
+              fontSize: '11px',
+              fontWeight: 800,
+              letterSpacing: '0.22em',
+              textTransform: 'uppercase',
+              color: '#666666',
+              marginTop: '12px',
+              marginBottom: '6px',
             }}
-          />
+          >
+            PRECISION SKINS ✦ BOTANICAL LAB ✦ 3M VINYL
+          </div>
         </div>
 
         {/* Hero Pill Action Buttons */}
